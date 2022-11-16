@@ -18,3 +18,5 @@
 # s = requests.Session()
 # r = s.post(url, data=data)
 # r.raise_for_status()
+
+# https://www.facebook.com/SeleniumIDERCWebdriver/posts/how-to-automate-facebook-login-and-signup-with-help-of-selenium-webdriver-execut/979064995492723/
