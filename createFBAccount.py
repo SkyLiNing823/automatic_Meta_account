@@ -40,13 +40,24 @@ def main(driver, f_name, l_name, email, pw, bth_y, bth_m, bth_d, sex):
             By.CSS_SELECTOR, ".\\_5k_2:nth-child(1) > .\\_58mt").click()
     # click submit btn
     driver.find_element(By.NAME, "websubmit").click()
-    time.sleep(10)
-    # driver.find_element(By.CSS_SELECTOR, value="[aria-label=繼續]").click()
-    # time.sleep(3)
-    # driver.find_element(By.CSS_SELECTOR, ".recaptcha-checkbox-border").click()
-    # driver.find_element(By.CSS_SELECTOR, ".xi112ho").click()
-    driver.find_element(By.ID, "jsc_c_5").send_keys("69562")
-    driver.find_element(By.CSS_SELECTOR, ".xtvsq51 > .x6s0dn4").click()
+    time.sleep(15)
+    try:
+        driver.find_element(By.CSS_SELECTOR, value="[aria-label=繼續]").click()
+    except:
+        pass
+    time.sleep(20)
+    try:
+        # driver.find_element(
+        #     By.CSS_SELECTOR, ".recaptcha-checkbox-border").click()
+        driver.find_element(By.XPATH, "//span[@id='recaptcha-anchor']").click()
+    except:
+        print('recaptcha-checkbox-border error')
+    try:
+        driver.find_element(By.CSS_SELECTOR, ".xi112ho").click()
+    except:
+        print('xi112ho error')
+    # driver.find_element(By.ID, "jsc_c_5").send_keys("69562")
+    # driver.find_element(By.CSS_SELECTOR, ".xtvsq51 > .x6s0dn4").click()
     # driver.find_elements_by_css_selector()
     time.sleep(5000)
 
@@ -54,12 +65,12 @@ def main(driver, f_name, l_name, email, pw, bth_y, bth_m, bth_d, sex):
 # <div class="x1i10hfl xjbqb8w x6umtig x1b1mbwd xaqea5y xav7gou x9f619 x1ypdohk xt0psk2 xe8uvvx xdj266r x11i5rnm xat24cr x1mh8g0r xexx8yu x4uap5 x18d9i69 xkhd6sd x16tdsg8 x1hl2dhg xggy1nq x1a2a7pz xt0b8zv x1qq9wsj x1s688f" role="button" tabindex="0">重新傳送確認碼</div>
 if __name__ == '__main__':
     driver = webdriver.Chrome()
-    f_name = 'white'
-    l_name = 'lee'
-    email = 'testimf20.2.2@gmail.com'
-    pw = 'NYCUIMF2022'
-    bth_y = 2000
+    f_name = '浩然'
+    l_name = '陳'
+    email = 'nycuqq1234@gmail.com'
+    pw = 'NYCU1234qq'
+    bth_y = 2002
     bth_m = 6
-    bth_d = 20
+    bth_d = 21
     sex = 'male'
     main(driver, f_name, l_name, email, pw, bth_y, bth_m, bth_d, sex)
