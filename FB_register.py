@@ -5,7 +5,9 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 
 
-def emailGetKey(driver, email, email_pw):
+def emailGetKey(driver):
+    email = 'testimf2022@gmail.com'
+    email_pw = 'NYCUIMF2022'
     js = "window.open('{}','_bank')"
     driver.execute_script(js.format('https://accounts.google.com/v3/signin/identifier?dsh=S553721998%3A1668583499751536&continue=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F%3Ftab%3Drm%26ogbl&emr=1&followup=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F%3Ftab%3Drm%26ogbl&osid=1&passive=1209600&service=mail&flowName=GlifWebSignIn&flowEntry=ServiceLogin&ifkv=ARgdvAve47XlYyPuWh-dwRV7yvIaSK4o-mZGnSPkLbvnNHulNWAdmoebkEinOTK7FgkjvQrAm1HLpg#inbox'))
     time.sleep(5)
@@ -27,16 +29,16 @@ def emailGetKey(driver, email, email_pw):
     time.sleep(2)
     driver.find_element(
         By.XPATH, '//*[@id="passwordNext"]/div/button/span').click()
-    time.sleep(5)
+    time.sleep(15)
     html = driver.find_element(By.XPATH, '//*').get_attribute('outerHTML')
-    start = html.index('FB-')+3
-    end = start+5
+    end = html.index(' 是你的 Facebook  確認碼')
+    start = end-5
     KEY = html[start:end]
     driver.switch_to.window(driver.window_handles[0])
     return driver, KEY
 
 
-def FBregister(driver, f_name, l_name, email, email_pw, pw, bth_y, bth_m, bth_d, sex):
+def FBregister(driver, f_name, l_name, email, pw, bth_y, bth_m, bth_d, sex):
     url = 'https://zh-tw.facebook.com/reg/'
     driver.get(url)
     # input first name
@@ -93,7 +95,7 @@ def FBregister(driver, f_name, l_name, email, email_pw, pw, bth_y, bth_m, bth_d,
         pass
     # input identification key
     try:
-        driver, KEY = emailGetKey(driver, email, email_pw)
+        driver, KEY = emailGetKey(driver)
         driver.find_element(By.NAME, "code").send_keys(KEY)
         driver.find_element(By.NAME, "confirm").click()
     except:
@@ -103,18 +105,16 @@ def FBregister(driver, f_name, l_name, email, email_pw, pw, bth_y, bth_m, bth_d,
 
 if __name__ == '__main__':
     driver = webdriver.Chrome()
-    f_name = '浩婷'
+    f_name = '一洪'
     l_name = '張'
-    # email = 'nycuqq1234@gmail.com'
-    email = 'testimf2022.2@gmail.com'
-    email_pw = 'fef3554r4321'
-    pw = 'fef3554r4321'
+    email = 'test1@liaowenchen.xyz'
+    pw = 'efewe245412'
     bth_y = 2002
     bth_m = 6
     bth_d = 21
-    sex = 'female'
+    sex = 'male'
     driver = FBregister(driver, f_name, l_name, email,
-                        email_pw, pw, bth_y, bth_m, bth_d, sex)
+                        pw, bth_y, bth_m, bth_d, sex)
     time.sleep(5000)
 
 
